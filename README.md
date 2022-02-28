@@ -6,7 +6,7 @@ To make use of these code base you gotta have installed not only Golang but Teln
 # Running this code
 
 ## how to run
-
+### Setting up the project
 ```sh
   git clone https://github.com/afa7789/MockUpMinerServer mockup
   cd mockup
@@ -18,6 +18,7 @@ To make use of these code base you gotta have installed not only Golang but Teln
   # for now we are only having the ids I inserted in the db
   go run . -port=8000 # if you do not set port it will use 8080
 ```
+### Connecting and sending calls to it
 
 ```python
 telnet localhost 8000 # 8080 here is the port change to reflect the above
@@ -30,6 +31,7 @@ telnet localhost 8000 # 8080 here is the port change to reflect the above
 # it will return a success with your new id.
 ```
 
+### Checking how the database state is
 ```bash
 docker exec -it postgres sh
 psql -U postgres
@@ -42,8 +44,8 @@ select * from miners;
 select * from subscriptions;
 ```
 
-Project organization:
-
+## Project organization:
+This is the file tree using the `tree` GNU command
 ```sh
 .
 ├── cmd
@@ -76,10 +78,14 @@ Project organization:
 └── README.md
 ```
 
-# Comments about the code:
+### Comments about the code:
 
 This is only a mockup so it does not work to actually mine crypto.
 We would still need the client golang code to be running in the computer to comunicate with us, and the other stratum methods finished.
 
 I have choosen to use DB clients without GORM to actually write some SQL , get a habit and see how low level and raw I can do SQL queries on Go.
 
+#### Reflections what I would be doing better.
+Creating tests before hand for some minor stuff.
+Create a simpler client so you don't actually need to use telnet.
+Use Gorm, maybe try to organize better the stratum folder, not at a perfect shape I would say.
