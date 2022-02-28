@@ -1,3 +1,4 @@
+![!Theme Image](resources/banner.png)
 # MockUp Miner Server
 A MockUp miner server is a backend code that will receive FTP requests , written in the format of stratum protocols.
 Stratum protocols is the agreed upon format to designate jsonRPC calls that miner servers send to miners client and vice-versa
