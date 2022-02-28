@@ -8,13 +8,13 @@ To make use of these code base you gotta have installed not only Golang but Teln
 ## how to run
 
 ```sh
-  git clone https://gitlab.com/afa7789/luxor_challenge
-  cd luxor_challenge
+  git clone https://github.com/afa7789/MockUpMinerServer mockup
+  cd mockup
   # docker-compose up
   docker-compose up
   # now we gotta seed our database
   # this bellow runs the script as if the database was a remote one, but it's actually in the docker :)
-  psql -h localhost -d luxor -U luxor -f etc/postgres/0_init.sql
+  psql -h localhost -d postgres -U postgres -f etc/postgres/0_init.sql
   # for now we are only having the ids I inserted in the db
   go run . -port=8000 # if you do not set port it will use 8080
 ```
@@ -32,7 +32,7 @@ telnet localhost 8000 # 8080 here is the port change to reflect the above
 
 ```bash
 docker exec -it postgres sh
-psql -U luxor
+psql -U postgres
 # entered in the db now
 \c
 #wanna see the tables ?

@@ -11,9 +11,6 @@ import (
 // port is used to define which port to connect to
 var port int
 
-// rootDir will be used to store files in this directory path
-var rootDir string
-
 // init is a initialization function being used to get flag values, variables that enters through the command line
 func init() {
 	if err := godotenv.Load(".env"); err != nil {

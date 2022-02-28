@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"log"
 	"net"
 
@@ -50,8 +51,10 @@ func (mid *Middleware) IsAuthorized(id int64) bool {
 	if err != nil {
 		log.Printf("error at IsAuthorized in GetMiner:%s", err)
 	}
+	// the code crashed cause m is null.
 	if m == nil {
-		print("m é nulo\n")
+		fmt.Printf("m is null")
+		return false
 	}
 	return m.Authorized
 }

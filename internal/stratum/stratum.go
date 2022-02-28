@@ -88,12 +88,12 @@ func (r *Request) handleError(err *domain.StratumError) {
 	// example :  {"id":3,"result":false,"error":[20,"invalid job",null]}
 	resp := fmt.Sprintf(`{"id":%d,"result":false,"error":[%d,"%s",null]`, r.ser.ID, err.ID, err.ErrorMessage)
 	// write at buffer
-	r.conn.Write([]byte(resp + "\n"))
+	_, _ = r.conn.Write([]byte(resp + "\n"))
 	log.Printf(err.ErrorMessage)
 	// add in the DB that it was a failure
 	errorr := r.db.InsertEntry(r.ser, false, r.conn.LocalAddr().String())
 	if errorr != nil {
-		log.Printf(errorr.Error())
+		log.Print(errorr.Error())
 	}
 }
 
@@ -130,12 +130,12 @@ func (r *Request) methodCaller() *domain.StratumError {
 	}
 
 	// Answer in the buffer
-	r.conn.Write([]byte(response + "\n"))
+	_, _ = r.conn.Write([]byte(response + "\n"))
 
 	// add in the DB that it was a success
 	errorr := r.db.InsertEntry(r.ser, true, r.conn.LocalAddr().String())
 	if errorr != nil {
-		log.Printf(errorr.Error())
+		log.Print(errorr.Error())
 	}
 	return nil
 }
